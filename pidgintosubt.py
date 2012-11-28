@@ -5,8 +5,8 @@ import re
 def repl(string):
     substring = re.findall('(\d{2}:\d{2}:\d{2})', string) 
     for i in substring:
-        blah = i.split(':')
-        dt_obj = datetime(2012, 11, 23, int(blah[0]), int(blah[1]), int(blah[2]))
+        semicolon_split = i.split(':')
+        dt_obj = datetime(2012, 11, 23, int(semicolon_split[0]), int(semicolon_split[1]), int(semicolon_split[2]))
         # Edit next line for epoch time offset from where you start to be 00:00:00
         epoch_to_adjust = 24867
         epoch_date = int(dt_obj.strftime("%s")) - epoch_to_adjust 
