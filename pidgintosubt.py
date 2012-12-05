@@ -19,6 +19,7 @@ def repl(string, begin):
 #-------------------------------------------------
 # datetime object to string
 inf = open('Subtitles.txt')
+# This section here takes the first line and creates it as the 30 second before the film starts marker, if this is off, the whole thing will be off
 warning = inf.readline()
 stamp = re.match('\((\d{2}:\d{2}:\d{2})\)', warning)
 begin = stamp.group(0)
@@ -28,7 +29,9 @@ for d in begin_split:
     dt_obj = datetime(2012, 11, 23, int(semic_split[0]), int(semic_split[1]), int(semic_split[2]))
     zero_dt_obj = datetime(2012, 11, 22, 23, 59, 30)
     epoch_dt = int(dt_obj.strftime("%s")) - int(zero_dt_obj.strftime("%s")) 
+# Setting subtitle number to 1 and incrementing from there    
 subtitle_num = 1 
+# Process each line and replace the time stamped line with a sub title 3 line deal 
 for line in inf:
     print subtitle_num
     print re.sub('\((\d{2}:\d{2}:\d{2})\)', repl(line, epoch_dt), line)
